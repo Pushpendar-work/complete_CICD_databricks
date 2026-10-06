@@ -22,9 +22,15 @@ resources:
           default: ${var.schema}
 
       tasks:
-        - task_key: notebook_task
+        - task_key: customers_task
           notebook_task:
             notebook_path: ../src/bakehouse_notebook.ipynb
+        - task_key: transactions_task
+          depends_on:
+            - task_key: customers_task
+          notebook_task:
+            notebook_path: ../src/transactions_notebook.ipynb
+          
 
       environments:
         - environment_key: default
