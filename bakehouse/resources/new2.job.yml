@@ -1,0 +1,32 @@
+resources:
+  jobs:
+    new2:
+      name: New2
+      tasks:
+        - task_key: franchise_task
+          disabled: false
+          email_notifications: {}
+          environment_key: Default
+          notebook_task:
+            notebook_path: ../src/new2/franchise_notebook.py
+            source: WORKSPACE
+          run_if: ALL_SUCCESS
+          timeout_seconds: 0
+          webhook_notifications: {}
+      parameters:
+        - name: catalog
+          default: ${var.catalog}
+        - name: schema
+          default: ${var.schema}
+      email_notifications:
+        no_alert_for_skipped_runs: false
+      environments:
+        - environment_key: Default
+          spec:
+            environment_version: "6"
+      max_concurrent_runs: 1
+      performance_target: PERFORMANCE_OPTIMIZED
+      queue:
+        enabled: true
+      timeout_seconds: 0
+      webhook_notifications: {}
